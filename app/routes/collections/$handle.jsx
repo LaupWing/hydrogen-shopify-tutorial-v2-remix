@@ -21,7 +21,13 @@ export const loader = async  ({ params, context}) => {
 const CollectionPage = () => {
    const {collection} = useLoaderData()
    console.log(collection)
-   return <div>CollectionPage</div>
+   return (
+      <>
+         <header className="grid w-full gap-8 py-8 justify-between items-start">
+            <h1></h1>
+         </header>
+      </>
+   )
 }
 export default CollectionPage
 

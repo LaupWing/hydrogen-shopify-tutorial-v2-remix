@@ -508,6 +508,9 @@ video {
 .flex-col {
   flex-direction: column;
 }
+.items-start {
+  align-items: flex-start;
+}
 .items-center {
   align-items: center;
 }
@@ -523,6 +526,9 @@ video {
 .gap-4 {
   gap: 1rem;
 }
+.gap-8 {
+  gap: 2rem;
+}
 .gap-y-6 {
   row-gap: 1.5rem;
 }
@@ -535,6 +541,10 @@ video {
 }
 .p-6 {
   padding: 1.5rem;
+}
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 .font-bold {
   font-weight: 700;
