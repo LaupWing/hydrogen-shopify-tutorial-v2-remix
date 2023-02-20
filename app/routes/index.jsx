@@ -1,4 +1,4 @@
-import { useLoaderData } from "@remix-run/react"
+import { Link, useLoaderData } from "@remix-run/react"
 
 export const meta = () => {
    return {
@@ -13,12 +13,23 @@ export async function loader({ context }) {
 
 const Index = () => {
    const { collections } = useLoaderData()
-   console.log(collections)
 
    return (
-      <div>
-         <h3>Hello from the homepage!</h3>
-      </div>
+      <section className="w-full gap-4">
+         <h2 className="whitespace-pre-wrap max-w-prose font-bold text-lead">Collections</h2>
+         <div className="grid-flow-row grid gap-2 gap-y-6 md:gap-4 lg:gap-6 grid-cols-1 sm:grid-cols-3">
+            {collections.nodes.map((collection) => {
+               return (
+                  <Link 
+                     to={`/collections/${collection.handle}`}
+                     key={collection.id}
+                  >
+                     {collection.title}
+                  </Link>
+               )
+            })}
+         </div>
+      </section>
    )
 }
 export default Index
