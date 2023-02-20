@@ -14,3 +14,16 @@ const Index = () => {
    )
 }
 export default Index
+
+
+const COLLECTION_QUERY = `#graphql
+   query FeaturedCollection {
+      collections(first: 3, query: "collection_type:smart"){
+         nodes {
+            id
+            title
+            handle
+         }
+      }
+   }
+`
