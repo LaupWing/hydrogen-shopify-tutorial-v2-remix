@@ -57,10 +57,10 @@ export default function App() {
 }
 
 const LAYOUT_QUERY = `#graphql
-  query layout {
-    shop {
-      name
-      description
-    }
-  }
+   query layout {
+      shop {
+         name
+         description
+      }
+   }
 `
