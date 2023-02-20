@@ -1,3 +1,4 @@
+import { useLoaderData } from "@remix-run/react"
 
 export const meta = () => {
    return {
@@ -6,7 +7,14 @@ export const meta = () => {
    }
 }
 
+export async function loader({ context }) {
+   return await context.storefront.query(COLLECTION_QUERY)
+}
+
 const Index = () => {
+   const { collections } = useLoaderData()
+   console.log(collections)
+
    return (
       <div>
          <h3>Hello from the homepage!</h3>
