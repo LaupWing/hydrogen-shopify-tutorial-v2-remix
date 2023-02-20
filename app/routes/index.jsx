@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from "@remix-run/react"
+import { Image } from "@shopify/hydrogen"
 
 export const meta = () => {
    return {
@@ -24,7 +25,24 @@ const Index = () => {
                      to={`/collections/${collection.handle}`}
                      key={collection.id}
                   >
-                     {collection.title}
+                     <div className="grid gap-4">
+                        {collection?.image && (
+                           <Image 
+                              alt={`Image of ${collection.title}`}
+                              data={collection.image}
+                              key={collection.id}
+                              sizes="(max-width: 32em) 100vw, 33vw"
+                              widths={[400, 500, 600, 700, 800, 900]}
+                              loaderOptions={{
+                                 scale: 2,
+                                 crop: "center"
+                              }}
+                           />
+                        )}
+                        <h2 className="whitespace-pre-wrap max-w-prose">
+                           {collection.title}
+                        </h2>
+                     </div>
                   </Link>
                )
             })}
@@ -42,6 +60,12 @@ const COLLECTION_QUERY = `#graphql
             id
             title
             handle
+            image {
+               altText
+               width
+               height
+               url
+            }
          }
       }
    }
