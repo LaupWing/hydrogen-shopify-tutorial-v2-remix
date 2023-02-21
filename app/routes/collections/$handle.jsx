@@ -64,6 +64,33 @@ const COLLECTION_QUERY = `#graphql
          title
          description
          handle
+         products(first: 4){
+            nodes {
+               id
+               title
+               publishedAt
+               handle
+               variants(first: 1){
+                  nodes {
+                     id
+                     image {
+                        url
+                        altText
+                        width
+                        height
+                     }
+                     price {
+                        amount
+                        currencyCode
+                     }
+                     compareAtPrice {
+                        amount
+                        currencyCode
+                     }
+                  }
+               }
+            }
+         }
       }
    }
 `
