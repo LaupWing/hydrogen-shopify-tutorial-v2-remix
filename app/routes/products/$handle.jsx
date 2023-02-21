@@ -51,6 +51,25 @@ const PRODUCT_QUERY = `#graphql
          title
          handle
          vendor
+         descriptionHtml
+         media(first: 10){
+            nodes{
+               ... on MediaImage {
+                  mediaContentType
+                  image {
+                     id
+                     url
+                     altText
+                     width
+                     height
+                  }
+               }
+            }
+         }
+         options {
+            name
+            values
+         }
       }
    }
 `
