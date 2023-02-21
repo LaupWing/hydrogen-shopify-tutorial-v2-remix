@@ -1,5 +1,6 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@shopify/remix-oxygen"
+import ProductGrid from "~/components/ProductGrid"
 
 const seo = ({data}) => ({
    title: data?.collection?.title,
@@ -53,6 +54,10 @@ const CollectionPage = () => {
                </div>
             )}
          </header>
+         <ProductGrid 
+            collection={collection}
+            url={`/collection/${collection.handle}`}
+         />
       </>
    )
 }
