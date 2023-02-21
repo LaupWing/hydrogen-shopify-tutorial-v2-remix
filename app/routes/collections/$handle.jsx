@@ -51,3 +51,12 @@ const COLLECTION_QUERY = `#graphql
       }
    }
 `
+
+const seo = ({data}) => ({
+   title: data?.collection?.title,
+   description: data?.collection?.description
+})
+
+export const handle = {
+   seo
+}
