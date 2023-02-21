@@ -24,7 +24,9 @@ const CollectionPage = () => {
    return (
       <>
          <header className="grid w-full gap-8 py-8 justify-between items-start">
-            <h1></h1>
+            <h1 className="text-4xl whitespace-pre-wrap font-bold inline-block">
+               {collection.title}
+            </h1>
          </header>
       </>
    )
