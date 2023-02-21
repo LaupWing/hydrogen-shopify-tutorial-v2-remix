@@ -27,6 +27,13 @@ export const loader = async  ({ params, context}) => {
    })
 }
 
+export const meta = ({data}) => {
+   return {
+      title: data?.collection?.title,
+      description: data?.collection?.description
+   }
+}
+
 const CollectionPage = () => {
    const {collection} = useLoaderData()
    
