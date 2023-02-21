@@ -1,7 +1,7 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "react-router"
 
-export const loader = ({params}) => {
+export const loader = ({params, context}) => {
    const { handle } = params
 
    return json({
@@ -20,3 +20,14 @@ const ProductHandle = () => {
 }
 
 export default ProductHandle
+
+const PRODUCT_QUERY = `#graphql
+   query product($handle: String!){
+      product(handle: $handle){
+         id
+         title
+         handle
+         vendor
+      }
+   }
+`
