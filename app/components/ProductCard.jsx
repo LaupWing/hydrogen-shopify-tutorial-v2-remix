@@ -1,4 +1,5 @@
 import { Link } from "@remix-run/react"
+import { Image, Money } from "@shopify/hydrogen"
 
 const ProductCard = ({ product }) => {
    const {price, compareAtPrice} = product.variants?.nodes[0] || {}
@@ -13,6 +14,27 @@ const ProductCard = ({ product }) => {
                      Sale
                   </label>
                )}
+               <Image 
+                  data={product.variants.nodes[0].image}
+                  alt={product.title}
+               />
+            </div>
+            <div className="grid gap-1">
+               <h3 className="max-w-prose text-copy w-full overflow-hidden whitespace-nowrap text-ellipsis">
+                  {product.title}
+               </h3>
+               <div className="flex gap-4">
+                  <span className="max-w-prose whitespace-pre-wrap inherit text-copy flex gap-4">
+                     <Money withoutTrailingZeros data={price}/>
+                     {isDiscounted && (
+                        <Money
+                           className="line-through opacity-50"
+                           withoutTrailingZeros
+                           data={compareAtPrice}
+                        />
+                     )}
+                  </span>
+               </div>
             </div>
          </div>
       </Link>
