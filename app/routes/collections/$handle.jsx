@@ -1,6 +1,15 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@shopify/remix-oxygen"
 
+const seo = ({data}) => ({
+   title: data?.collection?.title,
+   description: data?.collection?.description
+})
+
+export const handle = {
+   seo
+}
+
 export const loader = async  ({ params, context}) => {
    const { handle } = params
    const { collection } = await context.storefront.query(COLLECTION_QUERY, {
@@ -51,12 +60,3 @@ const COLLECTION_QUERY = `#graphql
       }
    }
 `
-
-const seo = ({data}) => ({
-   title: data?.collection?.title,
-   description: data?.collection?.description
-})
-
-export const handle = {
-   seo
-}
