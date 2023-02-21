@@ -58,7 +58,7 @@ const CollectionPage = () => {
          </header>
          <ProductGrid 
             collection={collection}
-            url={`/collection/${collection.handle}`}
+            url={`/collections/${collection.handle}`}
          />
       </>
    )
