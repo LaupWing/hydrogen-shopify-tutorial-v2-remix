@@ -66,12 +66,16 @@ const CollectionPage = () => {
 export default CollectionPage
 
 const COLLECTION_QUERY = `#graphql
-   query CollectionDetails($handle: String!){
+   query CollectionDetails($handle: String!, $cursor: String){
       collection(handle: $handle){
          title
          description
          handle
-         products(first: 4){
+         products(first: 4, after: $cursor){
+            pageInfo{
+               hasNextPage
+               endCursor
+            }
             nodes {
                id
                title
