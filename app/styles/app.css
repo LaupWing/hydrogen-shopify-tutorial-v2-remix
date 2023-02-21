@@ -506,6 +506,9 @@ video {
 .grid {
   display: grid;
 }
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
 .h-16 {
   height: 4rem;
 }
@@ -514,6 +517,9 @@ video {
 }
 .w-full {
   width: 100%;
+}
+.w-\[80vw\] {
+  width: 80vw;
 }
 .max-w-md {
   max-width: 28rem;
@@ -526,6 +532,9 @@ video {
 }
 .cursor-pointer {
   cursor: pointer;
+}
+.snap-center {
+  scroll-snap-align: center;
 }
 .grid-flow-row {
   grid-auto-flow: row;
@@ -662,6 +671,11 @@ video {
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+.shadow {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
 .outline {
   outline-style: solid;
 }
@@ -693,8 +707,24 @@ video {
 
 @media (min-width: 768px) {
 
+  .md\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
+  .md\:w-full {
+    width: 100%;
+  }
+
+  .md\:grid-flow-row {
+    grid-auto-flow: row;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .md\:gap-4 {
@@ -705,22 +735,52 @@ video {
     gap: 2rem;
   }
 
+  .md\:overflow-x-hidden {
+    overflow-x: hidden;
+  }
+
   .md\:p-8 {
     padding: 2rem;
+  }
+
+  .md\:p-0 {
+    padding: 0px;
+  }
+
+  .md\:px-8 {
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
 @media (min-width: 1024px) {
 
+  .lg\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .lg\:gap-6 {
     gap: 1.5rem;
   }
 
+  .lg\:gap-20 {
+    gap: 5rem;
+  }
+
   .lg\:p-12 {
     padding: 3rem;
+  }
+
+  .lg\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
