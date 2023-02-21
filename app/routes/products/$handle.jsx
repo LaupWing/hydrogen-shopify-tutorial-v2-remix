@@ -1,11 +1,24 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "react-router"
 
-export const loader = ({params, context}) => {
+export const loader = async ({params, context}) => {
    const { handle } = params
+   const { product } = await context.storefront.query(
+      PRODUCT_QUERY,
+      {
+         variables: {
+            handle
+         }
+      }
+   )
+
+   if(!product?.id){
+      throw new Response(null, {status: 404})
+   }
 
    return json({
-      handle
+      handle,
+      product
    })
 }
 
