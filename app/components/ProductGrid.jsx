@@ -9,7 +9,6 @@ const ProductGrid = ({ collection, url}) => {
    const [endCursor, setEndCursor] = useState(
       collection.products.pageInfo.endCursor
    )
-   console.log(`${url}?index&cursor=${endCursor}`)
 
    const [products, setProducts] = useState(collection.products.nodes || [])
 
