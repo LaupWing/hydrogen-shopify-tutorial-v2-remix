@@ -469,6 +469,9 @@ video {
   --tw-backdrop-sepia:  ;
 }
 /* New component styles can go here */
+.absolute {
+  position: absolute;
+}
 .relative {
   position: relative;
 }
@@ -478,8 +481,14 @@ video {
 .top-0 {
   top: 0px;
 }
+.right-0 {
+  right: 0px;
+}
 .z-40 {
   z-index: 40;
+}
+.m-4 {
+  margin: 1rem;
 }
 .inline-block {
   display: inline-block;
@@ -564,9 +573,16 @@ video {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.text-right {
+  text-align: right;
+}
 .text-4xl {
   font-size: 2.25rem;
   line-height: 2.5rem;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
 }
 .font-bold {
   font-weight: 700;
@@ -574,9 +590,17 @@ video {
 .leading-none {
   line-height: 1;
 }
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
+}
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.subpixel-antialiased {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
 }
 .shadow-sm {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
