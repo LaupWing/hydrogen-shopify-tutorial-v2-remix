@@ -20,7 +20,7 @@ export const loader = async  ({ params, context}) => {
 
 const CollectionPage = () => {
    const {collection} = useLoaderData()
-   console.log(collection)
+   
    return (
       <>
          <header className="grid w-full gap-8 py-8 justify-between items-start">
