@@ -27,6 +27,15 @@ const CollectionPage = () => {
             <h1 className="text-4xl whitespace-pre-wrap font-bold inline-block">
                {collection.title}
             </h1>
+            {collection.description && (
+               <div className="flex items-baseline justify-between w-full">
+                  <div>
+                     <p className="max-w-md whitespace-pre-wrap inherit text-copy inline-block">
+                        {collection.description}
+                     </p>
+                  </div>
+               </div>
+            )}
          </header>
       </>
    )
