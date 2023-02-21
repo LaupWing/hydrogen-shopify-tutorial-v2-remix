@@ -11,8 +11,10 @@ export const handle = {
    seo
 }
 
-export const loader = async  ({ params, context}) => {
+export const loader = async  ({ params, context, request}) => {
    const { handle } = params
+   const searchParams = new URL(request.url).searchParams
+   const cursor = searchParams.get("cursor")
    const { collection } = await context.storefront.query(COLLECTION_QUERY, {
       variables: {
          handle
