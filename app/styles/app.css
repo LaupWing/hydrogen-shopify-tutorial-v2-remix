@@ -469,6 +469,9 @@ video {
   --tw-backdrop-sepia:  ;
 }
 /* New component styles can go here */
+.relative {
+  position: relative;
+}
 .sticky {
   position: sticky;
 }
@@ -538,11 +541,17 @@ video {
 .gap-8 {
   gap: 2rem;
 }
+.gap-6 {
+  gap: 1.5rem;
+}
 .gap-y-6 {
   row-gap: 1.5rem;
 }
 .whitespace-pre-wrap {
   white-space: pre-wrap;
+}
+.rounded {
+  border-radius: 0.25rem;
 }
 .bg-neutral-50 {
   --tw-bg-opacity: 1;
