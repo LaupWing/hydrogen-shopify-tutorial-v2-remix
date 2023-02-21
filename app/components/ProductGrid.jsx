@@ -1,7 +1,16 @@
+import { useState } from "react"
 import ProductCard from "./ProductCard"
 
 const ProductGrid = ({ collection, url}) => {
-   const { products } = collection
+   const [nextPage, setNextPage] = useState(
+      collection.products.pageInfo.hasNextPage
+   )
+
+   const [endCursor, setEndCursor] = useState(
+      collection.products.pageInfo.endCursor
+   )
+
+   const [products, setProducts] = useState(collection.products.nodes || [])
 
    return (
       <section className="w-full gap-4 md:gap-8 grid">
@@ -10,13 +19,13 @@ const ProductGrid = ({ collection, url}) => {
                <ProductCard key={product.id} product={product}/>
             ))}
          </div>
-         {products.pageInfo.hasNextPage && (
+         {/* {products.pageInfo.hasNextPage && (
             <div className="flex items-center justify-center mt-6">
                <button className="inline-block rounded font-medium text-center py-3 px-6 border w-full cursor-pointer">
                   Load more products
                </button>
             </div>
-         )}
+         )} */}
       </section>
    )
 }
