@@ -1,4 +1,5 @@
 import { useLoaderData } from "@remix-run/react"
+import { MediaFile } from "@shopify/hydrogen"
 import { json } from "react-router"
 
 export const loader = async ({params, context}) => {
@@ -30,7 +31,7 @@ const ProductHandle = () => {
          <div className="grid items-start gap-6 lg:gap-20 md:grid-cols-2 lg:grid-cols-3">
             <div className="grid md:grid-flow-row md:p-0 md:overflow-x-hidden md:grid-cols-2 md:w-full lg:col-span-2">
                <div className="md:col-span-2 snap-center card-image aspect-square md:w-full w-[80vw] shadow rounded">
-                  <h2>TODO product gallery</h2>
+                  <ProductGallery media={product.media.nodes}/>
                </div>
             </div>
             <div className="md:sticky md:mx-auto max-w-xl md:max-w-[24rem] grid gap-8 p-0 md:p-6 md:px-0 top-[6rem] lg:top-[8rem] xl:top-[10rem]">
@@ -57,7 +58,7 @@ const ProductHandle = () => {
 
 export default ProductHandle
 
-const PrintJson = ({ data }) => {
+export const PrintJson = ({ data }) => {
    return (
       <details className="outline outline-2 outline-blue-300 py-4 my-2">
          <summary>Product JSON</summary>
@@ -95,3 +96,61 @@ const PRODUCT_QUERY = `#graphql
       }
    }
 `
+
+const ProductGallery = ({media}) => {
+   if(!media.length){
+      return null
+   }
+
+   const typeNameMap = {
+      MODEL_3D: "Model3d",
+      VIDEO: "Video",
+      IMAGE: "MediaImage",
+      EXTERNAL_VIDEO: "ExternalVideo"
+   }
+
+   return (
+      <div className="grid gap-4 overflow-x-scroll grid-flow-col md:grid-flow-row md:p-0 md:overflow-x-auto md:grid-cols-2 w-[90vw] md:w-full lg:col-span-2">
+         {media.map((med, i) => {
+            let extraProps = {}
+
+            if(med.mediaContentType === "MODEL_3D"){
+               extraProps = {
+                  interactionPromptThreshold: "0",
+                  ar: true,
+                  loading: "eager",
+                  disableZoom: true
+               }
+            }
+
+            const data = {
+               ...med,
+               __typename: typeNameMap[med.mediaContentType] || typeNameMap["IMAGE"],
+               image: {
+                  ...med.image,
+                  altText: med.alt || "Prodcut Image"
+               }
+            }
+
+            return (
+               <div 
+                  className={`${
+                     i % 3 === 0  ? "md:col-span-2" : "md:col-span-1"
+                  } snap-center card-image bg-white aspect-square md:w-full w-[80vw] shadow-sm rounded`}
+                  key={data.image.id}
+               >
+                  <MediaFile
+                     tabIndex={"0"}
+                     className={`w-full h-full aspect-square object-cover`}
+                     data={data}
+                     options={{
+                        crop: "center"
+                     }}
+                     {...extraProps}
+                  />
+               </div>
+            )
+         })}
+      </div>
+   )
+}
