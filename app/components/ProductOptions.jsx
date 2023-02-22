@@ -1,10 +1,13 @@
-import { Link, useLocation, useSearchParams } from "@remix-run/react"
+import { Link, useLocation, useSearchParams, useTransition } from "@remix-run/react"
 
 const ProductOptions = ({ options }) => {
+   const transition = useTransition()
    const {pathname, search} = useLocation()
    const [currentSearchParams] = useSearchParams()
  
-   const searchParams = currentSearchParams
+   const searchParams = transition.location
+      ? new URLSearchParams(transition.location.search)
+      : currentSearchParams
 
    return (
       <div className="grid gap-4 mb-6">
