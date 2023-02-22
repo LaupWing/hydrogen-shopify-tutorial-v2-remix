@@ -129,7 +129,7 @@ const ProductGallery = ({media}) => {
                __typename: typeNameMap[med.mediaContentType] || typeNameMap["IMAGE"],
                image: {
                   ...med.image,
-                  altText: med.alt || "Prodcut Image"
+                  altText: med.alt || "Product Image"
                }
             }
 
