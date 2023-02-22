@@ -25,15 +25,20 @@ const ProductOptions = ({ options }) => {
                   <div className="flex flex-wrap items-baseline gap-4">
                      {option.values.map((value) => {
                         const linkParams = new URLSearchParams(search)
+                        const isSelected = currentOptionVal === value
+                        
                         linkParams.set(option.name, value)
-
                         return (
                            <Link
                               key={value}
                               to={`${pathname}?${linkParams.toString()}`}
                               preventScrollReset
                               replace
-                              className="leading-none py-1 border-b-[1.5px] cursor-pointer transition-all duration-200"
+                              className={`leading-none py-1 border-b-[1.5px] cursor-pointer transition-all duration-200 ${
+                                 isSelected 
+                                    ? "border-gray-500"
+                                    : "border-neutral-50"
+                              }`}
                            >
                               {value}
                            </Link>
