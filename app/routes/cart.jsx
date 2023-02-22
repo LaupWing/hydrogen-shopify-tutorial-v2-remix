@@ -43,3 +43,10 @@ const USER_ERROR_FRAGMENT = `#graphql
       code
    }
 `
+
+const LINES_CART_FRAGMENT = `#graphql
+   fragment CartLineFragment on Cart {
+      id
+      totalQuantity
+   }
+`
