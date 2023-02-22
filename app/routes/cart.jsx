@@ -50,3 +50,9 @@ const LINES_CART_FRAGMENT = `#graphql
       totalQuantity
    }
 `
+
+const CREATE_CART_MUTATION = `#graphql
+   mutation($input: CartInput!, $country: CountryCode = ZZ, $language: LanguageCode){
+      
+   }
+`
