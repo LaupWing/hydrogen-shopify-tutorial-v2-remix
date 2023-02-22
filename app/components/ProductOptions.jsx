@@ -19,7 +19,7 @@ const ProductOptions = ({ options }) => {
                   </h3>
 
                   <div className="flex flex-wrap items-baseline gap-4">
-                     {options.values.map((value) => {
+                     {option.values.map((value) => {
                         const linkParams = new URLSearchParams(search)
                         linkParams.sest(option.name, value)
 

@@ -45,7 +45,7 @@ const ProductHandle = () => {
                      {product.vendor}
                   </span>
                </div>
-               {/* <ProductOptions options={product.options}/> */}
+               <ProductOptions options={product.options}/>
                <div
                   className="prose border-t border-gray-200 pt-6 text-black text-md"
                   dangerouslySetInnerHTML={{
