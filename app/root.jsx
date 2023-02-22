@@ -10,6 +10,8 @@ import styles from "./styles/app.css"
 import favicon from "../public/favicon.svg"
 import { Layout } from "./components/Layout"
 import { Seo } from "@shopify/hydrogen"
+import { ShopifyProvider } from "@shopify/hydrogen-react"
+
 
 export const links = () => {
    return [
@@ -24,6 +26,14 @@ export const links = () => {
       },
       { rel: "icon", type: "image/svg+xml", href: favicon },
    ]
+}
+
+const shopifyConfig = {
+   storefrontToken: "3b580e70970c4528da70c98e097c2fa0",
+   storeDomain: "https://hydrogen-preview.myshopify.com",
+   storefrontApiVersion: "2023-01",
+   countryIsoCode: "US",
+   languageIsoCode: "en",
 }
 
 export const meta = () => ({
@@ -42,20 +52,22 @@ export default function App() {
    const { name } = data.layout.shop
 
    return (
-      <html lang="en">
-         <head>
-            <Seo />
-            <Meta />
-            <Links />
-         </head>
-         <body>
-            <Layout title={name}>
-               <Outlet />
-            </Layout>
-            <ScrollRestoration />
-            <Scripts />
-         </body>
-      </html>
+      <ShopifyProvider {...shopifyConfig}>
+         <html lang="en">
+            <head>
+               <Seo />
+               <Meta />
+               <Links />
+            </head>
+            <body>
+               <Layout title={name}>
+                  <Outlet />
+               </Layout>
+               <ScrollRestoration />
+               <Scripts />
+            </body>
+         </html>
+      </ShopifyProvider>
    )
 }
 
