@@ -1,5 +1,5 @@
 import { useLoaderData } from "@remix-run/react"
-import { MediaFile } from "@shopify/hydrogen"
+import { MediaFile, Money, ShopPayButton } from "@shopify/hydrogen-react"
 import { json } from "react-router"
 import ProductOptions from "~/components/ProductOptions"
 
@@ -36,6 +36,7 @@ export const loader = async ({params, context, request}) => {
 
 const ProductHandle = () => {
    const {product, selectedVariant} = useLoaderData()
+   const orderable = selectedVariant?.availableForSale || false
 
    return (
       <section className="w-full gap-4 md:gap-8 grid px-6 md:px-8 lg:px-12">
@@ -58,6 +59,19 @@ const ProductHandle = () => {
                   selectedVariant={selectedVariant}
                   options={product.options}
                />
+               <Money 
+                  withoutTrailingZeros
+                  data={selectedVariant.price}
+                  className="text-xl font-semibold mb-2"
+               />
+               {orderable && (
+                  <div className="space-y-2">
+                     <ShopPayButton 
+                        variantIds={[selectedVariant?.id]}
+                        width={"400px"}
+                     />
+                  </div>
+               )}
                <div
                   className="prose border-t border-gray-200 pt-6 text-black text-md"
                   dangerouslySetInnerHTML={{
