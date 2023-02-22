@@ -31,3 +31,7 @@ const Cart = () => {
    )
 }
 export default Cart
+
+export async function cartCreate({input, storefront}){
+   const {cartCreate} = await storefront.mutate
+}
