@@ -1,6 +1,7 @@
 import { useLoaderData } from "@remix-run/react"
 import { MediaFile } from "@shopify/hydrogen"
 import { json } from "react-router"
+import ProductOptions from "~/components/ProductOptions"
 
 export const loader = async ({params, context}) => {
    const { handle } = params
@@ -25,6 +26,7 @@ export const loader = async ({params, context}) => {
 
 const ProductHandle = () => {
    const {product} = useLoaderData()
+   console.log(product)
 
    return (
       <section className="w-full gap-4 md:gap-8 grid px-6 md:px-8 lg:px-12">
@@ -43,7 +45,7 @@ const ProductHandle = () => {
                      {product.vendor}
                   </span>
                </div>
-               <h3>Product Options TODO</h3>
+               {/* <ProductOptions options={product.options}/> */}
                <div
                   className="prose border-t border-gray-200 pt-6 text-black text-md"
                   dangerouslySetInnerHTML={{
@@ -90,7 +92,7 @@ const PRODUCT_QUERY = `#graphql
             }
          }
          options {
-            name
+            name,
             values
          }
       }
