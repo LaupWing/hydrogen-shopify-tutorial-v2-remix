@@ -48,7 +48,7 @@ const ProductHandle = () => {
                <div
                   className="prose border-t border-gray-200 pt-6 text-black text-md"
                   dangerouslySetInnerHTML={{
-                     __html: product.dangerouslySetInnerHTML
+                     __html: product.descriptionHtml
                   }}
                />
             </div>
