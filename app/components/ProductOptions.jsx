@@ -1,13 +1,28 @@
 import { Link, useLocation, useSearchParams, useTransition } from "@remix-run/react"
 
-const ProductOptions = ({ options }) => {
+const ProductOptions = ({ options, selectedVariant }) => {
    const transition = useTransition()
    const {pathname, search} = useLocation()
    const [currentSearchParams] = useSearchParams()
+
+   const paramsWithDefault = (() => {
+      const defaultParams = new URLSearchParams(currentSearchParams)
+
+      if(!selectedVariant){
+         return defaultParams
+      }
+
+      for(const {name, value} of selectedVariant.selectedOptions){
+         if(!currentSearchParams.has(name)){
+            defaultParams.set(name, value)
+         }
+      }
+      return defaultParams
+   })()
  
    const searchParams = transition.location
       ? new URLSearchParams(transition.location.search)
-      : currentSearchParams
+      : paramsWithDefault
 
    return (
       <div className="grid gap-4 mb-6">
