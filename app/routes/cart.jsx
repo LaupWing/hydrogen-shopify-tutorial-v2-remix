@@ -35,3 +35,11 @@ export default Cart
 export async function cartCreate({input, storefront}){
    const {cartCreate} = await storefront.mutate
 }
+
+const USER_ERROR_FRAGMENT = `#graphql
+   fragment ErrorFragment on CartUserError {
+      message
+      field
+      code
+   }
+`
