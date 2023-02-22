@@ -1,7 +1,10 @@
-import { Link, useLocation } from "@remix-run/react"
+import { Link, useLocation, useSearchParams } from "@remix-run/react"
 
 const ProductOptions = ({ options }) => {
    const {pathname, search} = useLocation()
+   const [currentSearchParams] = useSearchParams()
+ 
+   const searchParams = currentSearchParams
 
    return (
       <div className="grid gap-4 mb-6">
@@ -9,6 +12,7 @@ const ProductOptions = ({ options }) => {
             if(!option.values.length){
                return
             }
+            const currentOptionVal = searchParams.get(option.name)
             return (
                <div
                   key={option.name}
