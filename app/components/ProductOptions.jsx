@@ -21,7 +21,7 @@ const ProductOptions = ({ options }) => {
                   <div className="flex flex-wrap items-baseline gap-4">
                      {option.values.map((value) => {
                         const linkParams = new URLSearchParams(search)
-                        linkParams.sest(option.name, value)
+                        linkParams.set(option.name, value)
 
                         return (
                            <Link
