@@ -50,6 +50,12 @@ export const CART_QUERY = `#graphql
                      compareAtPrice {
                         ...MoneyFragment
                      }
+                     price {
+                        ...MoneyFragment
+                     }
+                     requiresShipping
+                     title
+                     image {}
                   }
                }
             }
@@ -60,5 +66,13 @@ export const CART_QUERY = `#graphql
    fragment MoneyFragment on MoneyV2 {
       currencyCode
       amount
+   }
+
+   fragment ImageFragment on Image {
+      id
+      url
+      altText
+      width
+      height
    }
 `
