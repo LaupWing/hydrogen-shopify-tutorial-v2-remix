@@ -13,7 +13,7 @@ export async function action({request, context}){
 
    let status = 200
    let result
-
+   
    const cartAction = formData.get("cartAction")
    const countryCode = formData.get("countryCode")
       ? formData.get("countryCode")
@@ -44,8 +44,8 @@ export async function action({request, context}){
                storefront
             })
          }
-         console.log(result)
-         // cartId = result.cart.id
+         
+         cartId = result.cart.id
          break
       case "REMOVE_FROM_CART":
          const lineIds = formData.get("lineIds")
@@ -67,7 +67,6 @@ export async function action({request, context}){
       default:
          throw new Error("Invalid cart action")
    }
-
    session.set("cartId", cartId)
    headers.set("Set-Cookie", await session.commit())
 
@@ -99,8 +98,7 @@ const Cart = () => {
 export default Cart
 
 export async function cartCreate({input, storefront}){
-   const {cartCreate} = await storefront.mutate
-   storefront.mutate(CREATE_CART_MUTATION, {
+   const {cartCreate} = await storefront.mutate(CREATE_CART_MUTATION, {
       variables: {
          input
       }
