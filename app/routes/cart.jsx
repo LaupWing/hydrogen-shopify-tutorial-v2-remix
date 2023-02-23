@@ -34,7 +34,8 @@ export async function action({request, context}){
                         countryCode
                      }
                   }
-                  : lines
+                  : lines,
+               storefront
             })
          }else {
             result = await cartAdd({
@@ -43,7 +44,8 @@ export async function action({request, context}){
                storefront
             })
          }
-         cartId = result.cart.id
+         console.log(result)
+         // cartId = result.cart.id
          break
       case "REMOVE_FROM_CART":
          const lineIds = formData.get("lineIds")
