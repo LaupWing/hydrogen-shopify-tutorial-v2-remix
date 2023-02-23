@@ -263,7 +263,9 @@ function ProductForm({variantId}){
             name="lines" 
             value={JSON.stringify(lines)} 
          />
-
+         <button className="bg-black text-white px-6 py-3 w-full rounded-md text-center font-medium max-w-[400px]">
+            Add to Bag
+         </button>
       </fetcher.Form>
    )
 }
