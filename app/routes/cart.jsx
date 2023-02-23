@@ -46,7 +46,22 @@ export async function action({request, context}){
          cartId = result.cart.id
          break
       case "REMOVE_FROM_CART":
+         const lineIds = formData.get("lineIds")
+            ? JSON.parse(String(formData.get("lineIds")))
+            : []
          
+         if(!lineIds.lenngth){
+            throw new Error("No lines to remove")
+         }
+
+         result = await cartRemove({
+            cartId,
+            lineIds,
+            storefront
+         })
+
+         cartId = result.cart.id
+         break
    }
 }
 
