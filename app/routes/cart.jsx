@@ -81,3 +81,32 @@ const ADD_LINES_MUTATION = `#graphql
    ${LINES_CART_FRAGMENT}
    ${USER_ERROR_FRAGMENT}
 `
+
+const REMOVE_LINE_ITEMS_MUTATION = `#graphql
+   mutation ($cartId: ID!, $lineIds: [ID!]!, $language: LanguageCode, $country: CountryCode) @inContext(country: $country, language: $language) {
+      cartLinesRemove(cartId: $cartId, lineIds: $lineIds){
+         cart {
+            id
+            totalQuantity
+            lines(first: 100){
+               edges {
+                  node {
+                     id
+                     quantity
+                     merchandise {
+                        ...on ProductVariant {
+                           id
+                        }
+                     }
+                  }
+               }
+            }
+         }
+         errors: userErrors {
+            message
+            field
+            code
+         }
+      }
+   }
+`
