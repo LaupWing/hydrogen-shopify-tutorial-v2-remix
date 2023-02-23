@@ -55,7 +55,18 @@ export const CART_QUERY = `#graphql
                      }
                      requiresShipping
                      title
-                     image {}
+                     image {
+                        ...ImageFragment
+                     }
+                     product {
+                        handle
+                        title
+                        id
+                     }
+                     selectedOptions {
+                        name
+                        value
+                     }
                   }
                }
             }
