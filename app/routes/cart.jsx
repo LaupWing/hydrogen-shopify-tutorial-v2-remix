@@ -43,7 +43,22 @@ export async function cartCreate({input, storefront}){
    return cartCreate
 }
 
+export async function cartRemove({ cartId, lineIds, storefront }) {
+   const { cartLinesRemove } = await storefront.mutate(
+      REMOVE_LINE_ITEMS_MUTATION,
+      {
+         variables: {
+            cartId,
+            lineIds
+         }
+      }
+   )
 
+   if(!cartLinesRemove){
+      throw new Error("No data returend from remove lines mutation")
+   }
+   return cartLinesRemove
+}
 
 const USER_ERROR_FRAGMENT = `#graphql
    fragment ErrorFragment on CartUserError {
