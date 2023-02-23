@@ -62,7 +62,21 @@ export async function action({request, context}){
 
          cartId = result.cart.id
          break
+      default:
+         throw new Error("Invalid cart action")
    }
+
+   session.set("cartId", cartId)
+   headers.set("Set-Cookie", await session.commit())
+
+   const {cart, errors} = result
+   return json({
+      cart,
+      errors
+   }, {
+      status,
+      headers
+   })
 }
 
 const Cart = () => {
