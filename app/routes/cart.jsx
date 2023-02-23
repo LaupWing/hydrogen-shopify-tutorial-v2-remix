@@ -43,6 +43,17 @@ export async function cartCreate({input, storefront}){
    return cartCreate
 }
 
+export async function cartAdd({ cartId, lines, storefront}) {
+   const {cartLinesAdd} = await storefront.mutate(ADD_LINES_MUTATION, {
+      variables: {
+         cartId,
+         lines
+      }
+   })
+
+   return cartLinesAdd
+}
+
 export async function cartRemove({ cartId, lineIds, storefront }) {
    const { cartLinesRemove } = await storefront.mutate(
       REMOVE_LINE_ITEMS_MUTATION,
