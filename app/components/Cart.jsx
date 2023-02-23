@@ -7,7 +7,12 @@ export const CartLineItems = ({ linesObj }) => {
    return (
       <div className="space-y-8">
          {lines.map((line) => {
-            return 
+            return (
+               <LineItem 
+                  key={line.id}
+                  lineItem={line}
+               />
+            )
          })}
       </div>
    )
