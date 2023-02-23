@@ -248,6 +248,21 @@ function ProductForm({variantId}){
 
    return (
       <fetcher.Form action="/cart" method="post">
+         <input 
+            type="hidden" 
+            name="cartAction" 
+            value={"ADD_TO_CART"} 
+         />
+         <input 
+            type="hidden" 
+            name="countryCode" 
+            value={selectedLocale?.country ?? "US"}
+         />
+         <input 
+            type="hidden" 
+            name="lines" 
+            value={JSON.stringify(lines)} 
+         />
 
       </fetcher.Form>
    )
