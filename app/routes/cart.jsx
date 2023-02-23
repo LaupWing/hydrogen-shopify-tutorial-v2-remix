@@ -13,6 +13,41 @@ export async function action({request, context}){
 
    let status = 200
    let result
+
+   const cartAction = formData.get("cartAction")
+   const countryCode = formData.get("countryCode")
+      ? formData.get("countryCode")
+      : null
+
+   switch(cartAction){
+      case "ADD_TO_CART":
+         const lines = formData.get("lines")
+            ? JSON.parse(String(formData.get("lines")))
+            : []
+
+         if(!cartId){
+            result = await cartCreate({
+               input: countryCode 
+                  ? {
+                     lines,
+                     buyerIdentity: {
+                        countryCode
+                     }
+                  }
+                  : lines
+            })
+         }else {
+            result = await cartAdd({
+               cartId,
+               lines,
+               storefront
+            })
+         }
+         cartId = result.cart.id
+         break
+      case "REMOVE_FROM_CART":
+         
+   }
 }
 
 const Cart = () => {
