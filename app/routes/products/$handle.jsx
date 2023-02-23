@@ -1,4 +1,4 @@
-import { useLoaderData } from "@remix-run/react"
+import { useFetcher, useLoaderData, useMatches } from "@remix-run/react"
 import { MediaFile, Money, ShopPayButton } from "@shopify/hydrogen-react"
 import { json } from "react-router"
 import ProductOptions from "~/components/ProductOptions"
@@ -233,5 +233,22 @@ const ProductGallery = ({media}) => {
             )
          })}
       </div>
+   )
+}
+
+function ProductForm({variantId}){
+   const [root] = useMatches()
+   const selectedLocale = root?.data?.selectedLocale
+   const fetcher= useFetcher()
+
+   const lines = [{
+      merchandiseId: variantId,
+      quantity: 1
+   }]
+
+   return (
+      <fetcher.Form action="/cart" method="post">
+
+      </fetcher.Form>
    )
 }
