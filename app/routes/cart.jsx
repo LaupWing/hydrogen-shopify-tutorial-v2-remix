@@ -66,3 +66,18 @@ const CREATE_CART_MUTATION = `#graphql
    ${LINES_CART_FRAGMENT}
    ${USER_ERROR_FRAGMENT}
 `
+
+const ADD_LINES_MUTATION = `#graphql
+   mutation ($cartId: ID!, $lines: [CartLineInput!]!, $country: CountryCode = ZZ, $language: LanguageCode) @inContext(country: $country, language: $language){
+      cartLinesAdd(cartId: $cartId, lines: $lines){
+         cart {
+            ...CartLinesFragment
+         }
+         errors: userErrors {
+            ...ErrorFragment
+         }
+      }
+   }
+   ${LINES_CART_FRAGMENT}
+   ${USER_ERROR_FRAGMENT}
+`
