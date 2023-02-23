@@ -44,10 +44,21 @@ export const CART_QUERY = `#graphql
                   }
                }
                merchandise {
-                  
+                  ... on ProductVariant {
+                     id
+                     availableForSale
+                     compareAtPrice {
+                        ...MoneyFragment
+                     }
+                  }
                }
             }
          }
       }
+   }
+
+   fragment MoneyFragment on MoneyV2 {
+      currencyCode
+      amount
    }
 `
