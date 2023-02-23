@@ -70,6 +70,7 @@ const ProductHandle = () => {
                         variantIds={[selectedVariant?.id]}
                         width={"400px"}
                      />
+                     <ProductForm variantId={selectedVariant?.id}/>
                   </div>
                )}
                <div
