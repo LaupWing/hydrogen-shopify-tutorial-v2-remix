@@ -12,6 +12,7 @@ import { Layout } from "./components/Layout"
 import { Seo } from "@shopify/hydrogen"
 import { ShopifyProvider } from "@shopify/hydrogen-react"
 import { CART_QUERY } from "./queries/cart"
+import { defer } from "@shopify/remix-oxygen"
 
 export const links = () => {
    return [
@@ -42,8 +43,12 @@ export const meta = () => ({
 })
 
 export async function loader({ context }) {
-   const layout = await context.storefront.query(LAYOUT_QUERY)
-   return { layout }
+   const cartId = await context.session.get("cartId")
+
+   return defer({
+      cartId: cartId ? getCart(context, cartId) : undefined,
+      layout: await context.storefront.query(LAYOUT_QUERY)
+   })
 }
 
 export default function App() {
