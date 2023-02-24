@@ -1,5 +1,6 @@
-import { Link } from "@remix-run/react"
+import { Link, useLoaderData } from "@remix-run/react"
 import { json } from "@shopify/remix-oxygen"
+import { CartLineItems } from "~/components/Cart"
 import { CART_QUERY } from "~/queries/cart"
 
 export async function action({request, context}){
@@ -103,6 +104,21 @@ export async function loader({context}) {
 }
 
 const Cart = () => {
+   const {cart} = useLoaderData()
+
+   if(cart?.totalQuantity > 0){
+      return (
+         <div className="w-full max-w-6xl mx-auto pb-12 grid md:grid-cols-2 md:items-start gap-8 md:gap-8 lg:gap-12">
+            <div className="flex-grow md:translate-y-4">
+               <CartLineItems linesObj={cart.lines}/>
+            </div>
+            <div className="fixed left-0 right-0 bottom-0 md:sticky md:top-[65px] grid gap-6 p-4 md:px-6 md:translate-y-4 bg-gray-100 rounded-md w-full">
+               <p>TODO Cart Summary</p>
+            </div>
+         </div>
+      )
+   }
+
    return (
       <div className="flex flex-col space-y-7 justify-center items-center md:py-8 md:px-12 px-4 py-6 h-screen">
          <h2 className="whitespace-pre-wrap max-w-prose font-bold text-4xl">
