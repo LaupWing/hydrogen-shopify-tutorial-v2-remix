@@ -54,8 +54,8 @@ export async function action({request, context}){
          const lineIds = formData.get("lineIds")
             ? JSON.parse(String(formData.get("lineIds")))
             : []
-         
-         if(!lineIds.lenngth){
+            
+         if(!lineIds.length){
             throw new Error("No lines to remove")
          }
 
