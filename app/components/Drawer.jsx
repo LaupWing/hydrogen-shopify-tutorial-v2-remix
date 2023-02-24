@@ -1,4 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react"
+import { useState } from "react"
 import { Fragment } from "react"
 
 export const Drawer = ({ open, onClose, children }) => {
@@ -53,6 +54,26 @@ export const Drawer = ({ open, onClose, children }) => {
          </Dialog>
       </Transition>
    )
+}
+
+Drawer.title = Dialog.Title
+
+export function useDrawer(openDefault = false) {
+   const [isOpen, setIsOpen] = useState(openDefault)
+
+   function openDrawer() {
+      setIsOpen(true)
+   }
+
+   function closeDrawer() {
+      setIsOpen(false)
+   }
+
+   return {
+      isOpen,
+      openDrawer,
+      closeDrawer
+   }
 }
 
 function IconClose() {
