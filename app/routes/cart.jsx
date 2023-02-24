@@ -95,7 +95,7 @@ export async function loader({context}) {
                language: context.storefront.i18n.language
             }
          })
-      )
+      ).cart
       : null
 
    return {
