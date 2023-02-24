@@ -1,5 +1,6 @@
 import { Await, useMatches } from "@remix-run/react"
 import { Suspense, useEffect } from "react"
+import { CartLineItems } from "./Cart"
 import { Drawer, useDrawer } from "./Drawer"
 
 export const Layout = ({ children, title}) => {
@@ -72,6 +73,32 @@ function CartHeader({ cart, openDrawer }){
                      </div>
                   )}
                </button>
+            )}
+         </Await>
+      </Suspense>
+   )
+}
+
+function CartDrawer({cart, close}) {
+   return (
+      <Suspense>
+         <Await resolve={cart}>
+            {(data) => (
+               <>
+                  {data?.totalQuantity > 0 ? (
+                     <>
+                        <div className="flex-1 overflow-y-auto">
+                           <div className="flex flex-col space-y-7 justify-between items-center md:py-8 md:px-12 px-4 py-6">
+                              <CartLineItems linesObj={data.lines}/>
+                           </div>
+                        </div>
+                     </>
+                  ) : (
+                     <div>
+
+                     </div>
+                  )}
+               </>
             )}
          </Await>
       </Suspense>
