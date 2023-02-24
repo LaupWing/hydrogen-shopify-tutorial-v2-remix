@@ -29,8 +29,22 @@ export const Drawer = ({ open, onClose, children }) => {
                         leaveFrom="translate-x-0"
                         leaveTo="translate-x-full"
                      >
-                        <Dialog.Panel className={"max-w-lg transform text-left align-middle shadow-xl"}>
-
+                        <Dialog.Panel className={"max-w-lg transform text-left align-middle shadow-xl transition-all antialiased bg-neutral-50 flex flex-col"}>
+                           <header className="sticky top-0 flex items-center justify-between px-4 h-24 sm:px-8 md:px-12 flex-grow-0">
+                              <h2 
+                                 id="cart-contents"
+                                 className="whitespace-pre-wrap max-w-prose font-bold text-lg"
+                              >
+                                 Cart
+                              </h2>
+                              <button 
+                                 type="button"
+                                 className="p-4 my-4 transition text-primary hover:text-primary/50"
+                              >
+                                 <IconClose aria-label="Close panel"/>
+                              </button>
+                           </header>
+                           {children}
                         </Dialog.Panel>
                      </Transition.Child>
                   </div>
