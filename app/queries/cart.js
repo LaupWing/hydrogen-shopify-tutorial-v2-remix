@@ -86,6 +86,14 @@ export const CART_QUERY = `#graphql
             ...MoneyFragment
          }
       }
+      note
+      attributes {
+         key
+         value
+      }
+      discountCodes {
+         code
+      }
    }
 
    fragment MoneyFragment on MoneyV2 {
