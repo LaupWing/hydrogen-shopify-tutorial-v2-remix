@@ -33,6 +33,7 @@ const LineItem = ({ lineItem }) => {
             </Link>
             <div className="text-gray-800 text-sm">{merchandise.title}</div>
             <div className="text-gray-800 text-sm">Qty: {quantity}</div>
+            <ItemRemoveButton lineIds={[lineItem.id]}/>
          </div>
          <Money data={lineItem.cost.totalAmount} />
       </div>
