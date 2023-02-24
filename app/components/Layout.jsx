@@ -17,7 +17,7 @@ export const Layout = ({ children, title}) => {
             role={"banner"}
             className={`flex items-center h-16 p-6 md:p-8 lg:p-12 sticky backdrop-blur-lg z-40 top-0 justify-between w-full leading-none gap-4 antialiased transition shadow-sm`}
          >
-            <div className="flex gap-12">
+            <div className="flex gap-12 w-full items-center">
                <a href="/" className="font-bold">
                   { title }
                </a>
