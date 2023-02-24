@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react"
 import { json } from "@shopify/remix-oxygen"
+import { CART_QUERY } from "~/queries/cart"
 
 export async function action({request, context}){
    const {session, storefront} = context
@@ -79,6 +80,26 @@ export async function action({request, context}){
       status,
       headers
    })
+}
+
+export async function loader({context}) {
+   const cartId = await context.session.get("cartId")
+
+   const cart = cartId
+      ? (
+         await context.storefront.query(CART_QUERY, {
+            variables: {
+               cartId,
+               country: context.storefront.i18n.country,
+               language: context.storefront.i18n.language
+            }
+         })
+      )
+      : null
+
+   return {
+      cart
+   }
 }
 
 const Cart = () => {
