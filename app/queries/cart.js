@@ -72,6 +72,20 @@ export const CART_QUERY = `#graphql
             }
          }
       }
+      cost {
+         subtotalAmount {
+            ...MoneyFragment
+         }
+         totalAmount {
+            ...MoneyFragment
+         }
+         totalDutyAmount {
+            ...MoneyFragment
+         }
+         totalTaxAmount {
+            ...MoneyFragment
+         }
+      }
    }
 
    fragment MoneyFragment on MoneyV2 {
