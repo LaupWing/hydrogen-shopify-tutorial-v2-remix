@@ -11,7 +11,7 @@ import favicon from "../public/favicon.svg"
 import { Layout } from "./components/Layout"
 import { Seo } from "@shopify/hydrogen"
 import { ShopifyProvider } from "@shopify/hydrogen-react"
-
+import { CART_QUERY } from "./queries/cart"
 
 export const links = () => {
    return [
@@ -69,6 +69,22 @@ export default function App() {
          </html>
       </ShopifyProvider>
    )
+}
+
+async function getCart({storefront}, cartId) {
+   if(!storefront){
+      throw new Error("Missing storefront client in cart query")
+   }
+   const { cart } = await storefront.query(CART_QUERY, {
+      variables: {
+         cartId,
+         country: storefront.i18n.country,
+         language: storefront.i18n.language
+      },
+      cache: storefront.CacheNone()
+   })
+
+   return cart
 }
 
 const LAYOUT_QUERY = `#graphql
