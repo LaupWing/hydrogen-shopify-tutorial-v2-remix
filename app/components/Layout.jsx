@@ -1,6 +1,6 @@
 import { Await, useMatches } from "@remix-run/react"
 import { Suspense, useEffect } from "react"
-import { CartLineItems } from "./Cart"
+import { CartActions, CartLineItems, CartSummary } from "./Cart"
 import { Drawer, useDrawer } from "./Drawer"
 
 export const Layout = ({ children, title}) => {
@@ -40,7 +40,7 @@ export const Layout = ({ children, title}) => {
             open={isOpen} 
             onClose={closeDrawer}
          >
-            <h2>TODO Cart Data</h2>
+            <CartDrawer cart={cart} close={closeDrawer} />
          </Drawer>
       </div>
    )
@@ -85,6 +85,7 @@ function CartDrawer({cart, close}) {
          <Await resolve={cart}>
             {(data) => (
                <>
+               {console.log(data)}
                   {data?.totalQuantity > 0 ? (
                      <>
                         <div className="flex-1 overflow-y-auto">
@@ -92,10 +93,22 @@ function CartDrawer({cart, close}) {
                               <CartLineItems linesObj={data.lines}/>
                            </div>
                         </div>
+                        <div className="w-full md:px-12 px-4 py-6 space-y-6 border border-1 border-gray-100">
+                           <CartSummary cost={data.cost}/>
+                           <CartActions checkoutUrl={data.checkoutUrl}/>
+                        </div>
                      </>
                   ) : (
-                     <div>
-
+                     <div className="flex flex-col space-y-7 justify-center items-center md:py-8 md:px-12 px-4 py-6 min-h-screen">
+                        <h2 className="whitespace-pre-wrap max-w-prose font-bold text-4xl">
+                           Your cart is empty
+                        </h2>
+                        <button
+                           onClick={close}
+                           className="inline-block rounded-sm font-medium text-center py-3 px-6 max-w-xl leading-none bg-black text-white w-full"
+                        >
+                           Continue shopping
+                        </button>
                      </div>
                   )}
                </>
