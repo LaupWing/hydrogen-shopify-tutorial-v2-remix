@@ -1,4 +1,4 @@
-import { Await, useMatches } from "@remix-run/react"
+import { Await, useFetchers, useMatches } from "@remix-run/react"
 import { Suspense, useEffect } from "react"
 import { CartActions, CartLineItems, CartSummary } from "./Cart"
 import { Drawer, useDrawer } from "./Drawer"
@@ -7,8 +7,19 @@ export const Layout = ({ children, title}) => {
    const { closeDrawer, isOpen, openDrawer } = useDrawer()
    const [root] = useMatches()
    const cart = root.data?.cart
+   const fetchers = useFetchers()
+   const addToCartFetchers = []
+
+   for(const fetcher of fetchers){
+      if(fetcher?.submission?.formData?.get("cartAction") === "ADD_TO_CART"){
+         addToCartFetchers.push(fetcher)
+      }
+   }
 
    useEffect(() => {
+      if(isOpen || addToCartFetchers.length === 0){
+         return
+      }
       openDrawer()
    }, [])
 

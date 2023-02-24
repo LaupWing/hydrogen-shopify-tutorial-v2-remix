@@ -46,7 +46,7 @@ export async function loader({ context }) {
    const cartId = await context.session.get("cartId")
 
    return defer({
-      cartId: cartId ? getCart(context, cartId) : undefined,
+      cart: cartId ? getCart(context, cartId) : undefined,
       layout: await context.storefront.query(LAYOUT_QUERY)
    })
 }
