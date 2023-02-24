@@ -1,4 +1,4 @@
-import { Link } from "@remix-run/react"
+import { Link, useFetcher } from "@remix-run/react"
 import { flattenConnection, Image, Money } from "@shopify/hydrogen"
 
 export const CartLineItems = ({ linesObj }) => {
@@ -36,6 +36,28 @@ const LineItem = ({ lineItem }) => {
          </div>
          <Money data={lineItem.cost.totalAmount} />
       </div>
+   )
+}
+
+function ItemRemoveButton({lineIds}) {
+   const fetcher = useFetcher()
+
+   return (
+      <fetcher.Form action="/cart" method="post">
+         <input 
+            type="hidden" 
+            name="cartAction" 
+            value={"REMOVE_FROM_CART"}
+         />
+         <input 
+            type="hidden" 
+            name="lineIds" 
+            value={JSON.stringify(lineIds)}
+         />
+         <button className="bg-white border-black text-black hover:text-white hover:bg-black rounded-md font-small text-center my-2 max-w-xl leading-none border w-10 h-10 flex items-center justify-center">
+            <IconRemove />
+         </button>
+      </fetcher.Form>
    )
 }
 
