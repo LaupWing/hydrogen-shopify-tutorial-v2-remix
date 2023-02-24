@@ -41,6 +41,7 @@ export const Drawer = ({ open, onClose, children }) => {
                               <button 
                                  type="button"
                                  className="p-4 my-4 transition text-primary hover:text-primary/50"
+                                 onClick={onClose}
                               >
                                  <IconClose aria-label="Close panel"/>
                               </button>
